@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default () => {
+export default (props) => {
   return (
-    <div>
-      <h1>Hello from main</h1>
+    <div className='main-container'>
+      { props.children }
     </div>
   )
 }

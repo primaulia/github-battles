@@ -1,14 +1,16 @@
 import React from 'react'
-import { Router, Route, IndexRoute } from 'react-router'
+import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
 import Main from '../components/main'
 import Home from '../components/home'
+import PromptContainer from '../containers/PromptContainer'
 
 var routes = (
-  <Router>
+  <Router history={hashHistory}>
     <Route path='/' component={Main}>
-      <IndexRoute component={Main} />
-      <Route path='/home' component={Home} />
+      <IndexRoute component={Home} />
+      <Route path='/playerOne' header='Player One' component={PromptContainer} />
+      <Route path='/playerTwo/:playerOne' header='Player Two' component={PromptContainer} />
     </Route>
   </Router>
 )
