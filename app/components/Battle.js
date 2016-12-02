@@ -4,12 +4,14 @@ import s from '../styles/index'
 
 const Battle = ({header, isLoading, playerInfo}) => (
   <div className='jumbotron col-sm-6 col-sm-offset-3 text-center' style={s.transparentBg}>
-    { isLoading ? <h1>{ header }</h1> : <h1>Loaded</h1> }
+    { isLoading ? <h1>Loading...</h1> : <h1>{ header }</h1> }
 
     <ul>
-      {playerInfo.map((info) => {
-        <li>{info}</li>
-      })}
+      {
+        playerInfo.map((info) => {
+          return <li>{info.login}</li>
+        })
+      }
     </ul>
   </div>
 )

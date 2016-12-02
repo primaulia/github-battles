@@ -1,12 +1,14 @@
 import React from 'react'
+
 import Battle from '../components/Battle'
+import githubHelpers from '../utils/githubHelpers'
 
 class BattleContainer extends React.Component {
   constructor () {
     super()
     this.state = {
       isLoading: true,
-      playerInfo: [ 'prima', 'glen' ]
+      playerInfo: []
     }
 
     console.log('getInitialState thru constructor')
@@ -25,6 +27,13 @@ class BattleContainer extends React.Component {
     let query = this.props.location.query
     console.log(query)
     // fetch to github
+    githubHelpers.getPlayersInfo([query.playerOne, query.playerTwo])
+                 .then((players) => {
+                   this.setState({
+                     isLoading: false,
+                     playerInfo: players
+                   })
+                 })
   }
 
   render () {
