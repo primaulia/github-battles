@@ -1,7 +1,12 @@
 import React from 'react'
-import transparentBg from '../styles/index'
+
+import Prompt from '../components/Prompt'
 
 export default React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
   getInitialState: function () {
     return {
       username: ''
@@ -16,43 +21,36 @@ export default React.createClass({
 
   handleSubmit (e) {
     e.preventDefault()
-    console.log(this.state)
 
     var username = this.state.username
 
     this.setState({
       username: ''
     })
+
+    if (this.props.routeParams.playerOne) {
+      // go to /battle
+      this.context.router.push({
+        pathname: '/battle',
+        query: {
+          playerOne: this.prop.routeParams.playerOne,
+          playerTwo: this.state.username
+        }
+      })
+    } else {
+      // go to /playerTwo
+      this.context.router.push(`/playerTwo/${username}`)
+    }
   },
 
   render () {
     return (
-      <div className='jumbotron col-sm-6 col-sm-offset-3 text-center' style={transparentBg}>
-        <h1>
-          { this.props.route.header }
-        </h1>
-        <div className='col-sm-12'>
-          <form onSubmit={this.handleSubmit}>
-            <div className='form-group'>
-              <input
-                className='form-control'
-                placeholder='Github Username'
-                type='text'
-                onChange={this.handleChange}
-                value={this.state.username}
-              />
-            </div>
-            <div className='form-group col-sm-4 col-sm-offset-4'>
-              <button
-                className='btn btn-block btn-success'
-                type='submit'
-              >
-                Continue
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
+      <Prompt
+        onSubmit={this.handleSubmit}
+        onChange={this.handleChange}
+        username={this.state.username}
+        header={this.props.route.header}
+      />
     )
   }
 })
