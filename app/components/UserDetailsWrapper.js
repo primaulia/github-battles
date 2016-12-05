@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 
 const UserDetailsWrapper = ({header, children}) => (
-  <div className='col-sm-6'>
+  <div className='col-sm-6 text-center'>
     <p className='lead'>{header}</p>
     { children }
   </div>

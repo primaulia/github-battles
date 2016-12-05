@@ -6,17 +6,20 @@ import UserDetailsWrapper from './UserDetailsWrapper'
 import UserDetails from './UserDetails'
 
 const Battle = ({header, isLoading, playerInfo, onInitiateBattle}) => (
-  <div className='jumbotron col-sm-6 col-sm-offset-3 text-center' style={s.transparentBg}>
+  <div className='jumbotron col-sm-12 text-center' style={s.transparentBg}>
     { isLoading ? <h1>Loading...</h1> : (
       <div>
         <h1>{ header }</h1>
         <div className='col-sm-8 col-sm-offset-2'>
-          <UserDetailsWrapper header='Player 1' >
-            <UserDetails info={playerInfo[0]} />
-          </UserDetailsWrapper>
-          <UserDetailsWrapper header='Player 2' >
-            <UserDetails info={playerInfo[1]} />
-          </UserDetailsWrapper>
+          {
+            playerInfo.map((player, index) => {
+              return (
+                <UserDetailsWrapper key={index} header={`Player ${index + 1}`} >
+                  <UserDetails info={player} />
+                </UserDetailsWrapper>
+              )
+            })
+          }
         </div>
         <div className='col-sm-8 col-sm-offset-2'>
           <div className='col-sm-12' style={s.space}>
