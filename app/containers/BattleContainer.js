@@ -36,12 +36,24 @@ class BattleContainer extends React.Component {
                  })
   }
 
+  handleInitiateBattle () {
+    alert('battle initiated')
+    this.context.router.push({
+      pathname: '/results',
+      header: 'Fight!',
+      state: {
+        playerInfo: this.state.playerInfo
+      }
+    })
+  }
+
   render () {
     return (
       <Battle
         header={this.props.route.header}
         isLoading={this.state.isLoading}
         playerInfo={this.state.playerInfo}
+        onInitiateBattle={this.handleInitiateBattle}
       />
     )
   }
