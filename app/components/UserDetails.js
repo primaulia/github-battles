@@ -6,9 +6,11 @@ const UserDetails = ({info}) => (
     <li className='list-group-item'>
       <img src={info.avatar_url} className='img-rounded img-responsive' />
     </li>
-    <li className='list-group-item'>
-      Name: {info.name}
-    </li>
+    { info.name &&
+      <li className='list-group-item'>
+        Name: {info.name}
+      </li>
+    }
     <li className='list-group-item'>
       Handle: {info.login}
     </li>
@@ -38,7 +40,7 @@ const UserDetails = ({info}) => (
 UserDetails.propTypes = {
   info: PropTypes.shape({
     avatar_url: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     login: PropTypes.string.isRequired,
     followers: PropTypes.number.isRequired,
     following: PropTypes.number.isRequired,

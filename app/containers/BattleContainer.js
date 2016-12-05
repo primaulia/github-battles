@@ -37,7 +37,6 @@ class BattleContainer extends React.Component {
   }
 
   handleInitiateBattle () {
-    alert('battle initiated')
     this.context.router.push({
       pathname: '/results',
       header: 'Fight!',
@@ -53,13 +52,9 @@ class BattleContainer extends React.Component {
         header={this.props.route.header}
         isLoading={this.state.isLoading}
         playerInfo={this.state.playerInfo}
-        onInitiateBattle={this.handleInitiateBattle}
+        onInitiateBattle={this.handleInitiateBattle.bind(this)}
       />
     )
-  }
-
-  componentWillUnmount () {
-    console.log('componentWillUnmount')
   }
 }
 

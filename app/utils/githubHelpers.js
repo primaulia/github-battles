@@ -20,6 +20,10 @@ const helpers = {
     }).catch((err) => {
       console.warn('Error in getPlayersInfo', err)
     })
+  },
+
+  battle (players) {
+    console.log('battle these players')
   }
 }
 
